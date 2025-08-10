@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hajar Elouafi - Ingénieure en Transformation Digitale Industrielle</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --secondary-color: #ecf0f1;
+            --text-color: #2c3e50;
+            --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background: var(--background-gradient);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--background-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .profile-placeholder {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--background-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover {
+            color: var(--primary-color);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            margin-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .timeline-company {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            background: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-icon {
+            background: var(--background-gradient);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-placeholder {
+                width: 200px;
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">Hajar Elouafi</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#apropos">À propos</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#competences">Compétences</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <h1>Hajar Elouafi</h1>
+            <div class="subtitle">Ingénieure en Transformation Digitale Industrielle</div>
+            <p class="description">
+                Passionnée par l'innovation technologique et la transformation digitale des entreprises. 
+                Spécialisée dans le développement d'applications industrielles, l'IoT, et l'optimisation des processus.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Me Contacter
+                </a>
+                <a href="#projets" class="btn btn-secondary">
+                    <i class="fas fa-rocket"></i> Voir mes Projets
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos" class="section">
+        <h2 class="section-title">À Propos</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="profile-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            <div class="about-content">
+                <h3>Profil Professionnel</h3>
+                <p>
+                    Ingénieure en transformation digitale industrielle avec une expérience pratique en développement web, 
+                    applications mobiles, IoT, et systèmes de monitoring. Compétences avérées en gestion de projets techniques, 
+                    analyse de données et automatisation industrielle.
+                </p>
+                <p>
+                    À la recherche d'opportunités pour contribuer à l'innovation technologique et la transformation 
+                    digitale des entreprises à travers des solutions créatives et efficaces.
+                </p>
+                
+                <div class="contact-info">
+                    <a href="mailto:hajarelouafi00@gmail.com" class="contact-item">
+                        <i class="fas fa-envelope"></i> hajarelouafi00@gmail.com
+                    </a>
+                    <a href="tel:+212695684097" class="contact-item">
+                        <i class="fas fa-phone"></i> +212 695 684 097
+                    </a>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i> Salé, Maroc
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <h2 class="section-title">Expérience Professionnelle</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Février 2025 - Août 2025</div>
+                <h3 class="timeline-title">Stagiaire PFE - Développement Système de Monitoring</h3>
+                <div class="timeline-company">Groupe Stellantis - Site de Kénitra</div>
+                <p>Développement d'un système de monitoring temps réel des indicateurs de performance de l'atelier emboutissage (OEE, arrêts...). Collecte et transmission des données de production depuis un automate Siemens S7-1500 via une nano IoT.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Juillet - Août 2024</div>
+                <h3 class="timeline-title">Stagiaire PFA - Développement d'Application de suivi de production</h3>
+                <div class="timeline-company">Groupe Stellantis - Site de Kénitra</div>
+                <p>Développement d'une application web de suivi de production et RO en temps réel avec implémentation de fonctionnalités de visualisation avec graphiques dynamiques.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">ECharts</span>
+                    <span class="tech-tag">Bootstrap</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">Juillet 2023</div>
+                <h3 class="timeline-title">Stagiaire d'Initiation - Développement d'application de gestion</h3>
+                <div class="timeline-company">OCP Jorf Lasfar</div>
+                <p>Implémentation d'un système de réservation de salles de réunion avec gestion des conflits et fonctionnalités de demande de matériel supplémentaire.</p>
+                <div class="tech-tags">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">MySQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="competences" class="section">
+        <h2 class="section-title">Compétences Techniques</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Développement Web & Mobile</h3>
+                <div class="skill-list">
+                    <span class="skill-item">HTML/CSS</span>
+                    <span class="skill-item">JavaScript</span>
+                    <span class="skill-item">Python</span>
+                    <span class="skill-item">Django</span>
+                    <span class="skill-item">React.js</span>
+                    <span class="skill-item">PHP</span>
+                    <span class="skill-item">Android Studio</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-database"></i> Bases de Données & ERP</h3>
+                <div class="skill-list">
+                    <span class="skill-item">MySQL</span>
+                    <span class="skill-item">PostgreSQL</span>
+                    <span class="skill-item">ODOO</span>
+                    <span class="skill-item">UML</span>
+                    <span class="skill-item">Merise</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-microchip"></i> IoT & Automatisation</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Arduino</span>
+                    <span class="skill-item">TIA Portal</span>
+                    <span class="skill-item">Siemens S7</span>
+                    <span class="skill-item">GRAFCET</span>
+                    <span class="skill-item">Ladder</span>
+                    <span class="skill-item">Linux</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-chart-line"></i> Analyse & Reporting</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Power BI</span>
+                    <span class="skill-item">R</span>
+                    <span class="skill-item">Excel VBA</span>
+                    <span class="skill-item">KNIME</span>
+                    <span class="skill-item">Python Analytics</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> CAO & Gestion de Projets</h3>
+                <div class="skill-list">
+                    <span class="skill-item">CATIA</span>
+                    <span class="skill-item">MS Project</span>
+                    <span class="skill-item">SCRUM</span>
+                    <span class="skill-item">Lean Management</span>
+                    <span class="skill-item">DMAIC</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fas fa-cogs"></i> DevOps & Outils</h3>
+                <div class="skill-list">
+                    <span class="skill-item">Docker</span>
+                    <span class="skill-item">Git/GitHub</span>
+                    <span class="skill-item">VMware</span>
+                    <span class="skill-item">VirtualBox</span>
+                    <span class="skill-item">Proteus</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projets" class="section">
+        <h2 class="section-title">Projets Académiques</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Système IoT de Santé Connectée</h3>
+                    <p>Application IoT pour surveillance médicale à distance et gestion des maladies chroniques avec interface web intuitive.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">NodeRED</span>
+                        <span class="tech-tag">ThingSpeak</span>
+                        <span class="tech-tag">WOKWI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Robot Suiveur de Ligne Autonome</h3>
+                    <p>Conception et réalisation d'un robot éviteur d'obstacles avec navigation intelligente et système de détection avancé.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Arduino</span>
+                        <span class="tech-tag">L298</span>
+                        <span class="tech-tag">Proteus8</span>
+                        <span class="tech-tag">C++</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Détection de Formes par IA</h3>
+                    <p>Système de reconnaissance de formes géométriques utilisant des réseaux de neurones et vision par ordinateur.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">YOLO V5</span>
+                        <span class="tech-tag">RoboFlow</span>
+                        <span class="tech-tag">Google Colab</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Automatisation d'Extraction d'Huile d'Olive</h3>
+                    <p>Automatisation complète avec conception des schémas P&ID et programmation des opérations industrielles.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">TIA Portal</span>
+                        <span class="tech-tag">P&ID</span>
+                        <span class="tech-tag">HMI</span>
+                        <span class="tech-tag">GRAFCET</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Prédiction Prix Voitures d'Occasion</h3>
+                    <p>Modèle prédictif avec interface web pour l'estimation de prix utilisant la régression linéaire.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Machine Learning</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">
+                    <i class="fas fa-table"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Application Excel VBA</h3>
+                    <p>Application complète de gestion de production pour une entreprise de fabrication de chocolat avec interface utilisateur avancée.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Excel VBA</span>
+                        <span class="tech-tag">Macros</span>
+                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">Dashboard</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact</h2>
+        <div style="text-align: center;">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                Intéressé par mes compétences ? N'hésitez pas à me contacter pour discuter d'opportunités de collaboration.
+            </p>
+            <div class="cta-buttons">
+                <a href="mailto:hajarelouafi00@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Envoyer un Email
+                </a>
+                <a href="tel:+212695684097" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> Appeler
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://linkedin.com/in/hajar-elouafi" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/hajar0000" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:hajarelouafi00@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Hajar Elouafi. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+            } else {
+                header.style.backdropFilter = 'blur(10px)';
+                header.style.backgroundColor = 'transparent';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('.section, .timeline-item, .project-card, .skill-category').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
