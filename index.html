@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio de Hajar Elouafi - Ingénieure en Transformation Digitale Industrielle spécialisée en IoT, développement web et automatisation industrielle">
+    <meta name="author" content="Hajar Elouafi">
     <title>Hajar Elouafi - Ingénieure en Transformation Digitale Industrielle</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -17,8 +19,9 @@
             --accent-color: #3498db;
             --secondary-color: #ecf0f1;
             --text-color: #2c3e50;
-            --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --background-gradient: linear-gradient(135deg, #79B6CD 0%, #3A7893 100%);;
             --card-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            --hover-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         body {
@@ -38,6 +41,7 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
         .nav {
@@ -71,6 +75,15 @@
             color: var(--accent-color);
         }
 
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
         /* Hero Section */
         .hero {
             background: var(--background-gradient);
@@ -81,12 +94,31 @@
             text-align: center;
             color: white;
             padding: 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-content .subtitle {
@@ -190,6 +222,7 @@
             margin: 0 auto;
             color: white;
             font-size: 4rem;
+            box-shadow: var(--card-shadow);
         }
 
         .about-content h3 {
@@ -239,9 +272,15 @@
             margin-bottom: 2rem;
             background: white;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: var(--card-shadow);
             margin-left: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
         }
 
         .timeline-item::before {
@@ -253,6 +292,7 @@
             height: 12px;
             background: var(--accent-color);
             border-radius: 50%;
+            box-shadow: 0 0 0 4px white, 0 0 0 6px var(--accent-color);
         }
 
         .timeline-date {
@@ -277,7 +317,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
+            margin: 1rem 0;
         }
 
         .tech-tag {
@@ -286,6 +326,155 @@
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.8rem;
+        }
+
+        .btn-see-more {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            background: var(--accent-color);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-see-more:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-right: 2rem;
+        }
+
+        .modal-description {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .modal-description ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .modal-description li {
+            margin: 0.5rem 0;
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            position: relative;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .gallery img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .prev, .next {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .prev:hover, .next:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        .image-counter {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .thumbnail-gallery {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover, .thumbnail.active {
+            opacity: 1;
+            border-color: var(--accent-color);
+            transform: scale(1.1);
         }
 
         /* Skills Section */
@@ -298,8 +487,14 @@
         .skill-category {
             background: white;
             padding: 2rem;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--hover-shadow);
         }
 
         .skill-category h3 {
@@ -321,6 +516,13 @@
             padding: 0.5rem 1rem;
             border-radius: 20px;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: scale(1.05);
         }
 
         /* Projects Section */
@@ -335,12 +537,13 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: var(--hover-shadow);
         }
 
         .project-icon {
@@ -349,6 +552,7 @@
             padding: 2rem;
             text-align: center;
             font-size: 3rem;
+            position: relative;
         }
 
         .project-content {
@@ -380,11 +584,15 @@
         .social-links a {
             color: white;
             font-size: 1.5rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 10px;
+            border-radius: 50%;
         }
 
         .social-links a:hover {
             color: var(--accent-color);
+            background: rgba(255,255,255,0.1);
+            transform: scale(1.2);
         }
 
         /* Animations */
@@ -399,10 +607,42 @@
             }
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
             }
 
             .hero-content h1 {
@@ -432,6 +672,55 @@
             .section {
                 padding: 3rem 1rem;
             }
+
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 1.5rem;
+            }
+
+            .prev, .next {
+                padding: 8px 12px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Image Error Handling */
+        .image-error {
+            background: #f8f9fa;
+            color: #666;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 10px;
+            border: 2px dashed #ddd;
+        }
+
+        .image-error i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -440,7 +729,10 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">Hajar Elouafi</div>
-            <ul class="nav-links">
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#accueil">Accueil</a></li>
                 <li><a href="#apropos">À propos</a></li>
                 <li><a href="#experience">Expérience</a></li>
@@ -524,11 +816,14 @@
                     <span class="tech-tag">Docker</span>
                     <span class="tech-tag">PostgreSQL</span>
                 </div>
+                <button class="btn-see-more" onclick="openExperienceModal(0)">
+                    <i class="fas fa-images"></i> Voir Détails & Images
+                </button>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">Juillet - Août 2024</div>
-                <h3 class="timeline-title">Stagiaire PFA - Développement d'Application de suivi de production</h3>
+                <h3 class="timeline-title">Stagiaire PFA - Application de suivi de production</h3>
                 <div class="timeline-company">Groupe Stellantis - Site de Kénitra</div>
                 <p>Développement d'une application web de suivi de production et RO en temps réel avec implémentation de fonctionnalités de visualisation avec graphiques dynamiques.</p>
                 <div class="tech-tags">
@@ -538,17 +833,23 @@
                     <span class="tech-tag">ECharts</span>
                     <span class="tech-tag">Bootstrap</span>
                 </div>
+                <button class="btn-see-more" onclick="openExperienceModal(1)">
+                    <i class="fas fa-images"></i> Voir Détails & Images
+                </button>
             </div>
 
             <div class="timeline-item">
                 <div class="timeline-date">Juillet 2023</div>
-                <h3 class="timeline-title">Stagiaire d'Initiation - Développement d'application de gestion</h3>
+                <h3 class="timeline-title">Stagiaire d'Initiation - Application de gestion de salle de réunion</h3>
                 <div class="timeline-company">OCP Jorf Lasfar</div>
                 <p>Implémentation d'un système de réservation de salles de réunion avec gestion des conflits et fonctionnalités de demande de matériel supplémentaire.</p>
                 <div class="tech-tags">
                     <span class="tech-tag">Java</span>
                     <span class="tech-tag">MySQL</span>
                 </div>
+                <button class="btn-see-more" onclick="openExperienceModal(2)">
+                    <i class="fas fa-images"></i> Voir Détails & Images
+                </button>
             </div>
         </div>
     </section>
@@ -567,6 +868,8 @@
                     <span class="skill-item">React.js</span>
                     <span class="skill-item">PHP</span>
                     <span class="skill-item">Android Studio</span>
+                    <span class="skill-item">Java</span>
+                    <span class="skill-item">WordPress</span>
                 </div>
             </div>
 
@@ -600,7 +903,6 @@
                     <span class="skill-item">R</span>
                     <span class="skill-item">Excel VBA</span>
                     <span class="skill-item">KNIME</span>
-                    <span class="skill-item">Python Analytics</span>
                 </div>
             </div>
 
@@ -632,7 +934,7 @@
     <section id="projets" class="section">
         <h2 class="section-title">Projets Académiques</h2>
         <div class="projects-grid">
-            <div class="project-card">
+            <div class="project-card" onclick="openProjectModal(0)">
                 <div class="project-icon">
                     <i class="fas fa-heartbeat"></i>
                 </div>
@@ -648,7 +950,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" onclick="openProjectModal(1)">
                 <div class="project-icon">
                     <i class="fas fa-robot"></i>
                 </div>
@@ -664,7 +966,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" onclick="openProjectModal(2)">
                 <div class="project-icon">
                     <i class="fas fa-eye"></i>
                 </div>
@@ -680,7 +982,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" onclick="openProjectModal(3)">
                 <div class="project-icon">
                     <i class="fas fa-industry"></i>
                 </div>
@@ -696,7 +998,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" onclick="openProjectModal(4)">
                 <div class="project-icon">
                     <i class="fas fa-car"></i>
                 </div>
@@ -712,7 +1014,7 @@
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card" onclick="openProjectModal(5)">
                 <div class="project-icon">
                     <i class="fas fa-table"></i>
                 </div>
@@ -741,30 +1043,91 @@
                 <a href="mailto:hajarelouafi00@gmail.com" class="btn btn-primary">
                     <i class="fas fa-envelope"></i> Envoyer un Email
                 </a>
-                <a href="tel:+212695684097" class="btn btn-secondary">
+                <a href="tel:+212695684097" class="btn btn-primary">
                     <i class="fas fa-phone"></i> Appeler
                 </a>
             </div>
         </div>
     </section>
 
+
     <!-- Footer -->
     <footer class="footer">
         <div class="social-links">
-            <a href="https://linkedin.com/in/hajar-elouafi" target="_blank">
+            <a href="https://linkedin.com/in/hajar-elouafi" target="_blank" title="LinkedIn">
                 <i class="fab fa-linkedin"></i>
             </a>
-            <a href="https://github.com/hajar0000" target="_blank">
+            <a href="https://github.com/hajar0000" target="_blank" title="GitHub">
                 <i class="fab fa-github"></i>
             </a>
-            <a href="mailto:hajarelouafi00@gmail.com">
+            <a href="mailto:hajarelouafi00@gmail.com" title="Email">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
         <p>&copy; 2025 Hajar Elouafi. Tous droits réservés.</p>
     </footer>
 
+    <!-- Experience Modal -->
+    <div id="experienceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('experienceModal')">&times;</span>
+            <h2 class="modal-title" id="expModalTitle"></h2>
+            <div class="modal-description" id="expModalDescription"></div>
+            
+            <div class="gallery" id="expGallery">
+                <div class="loading" id="expLoading">
+                    <div class="spinner"></div>
+                    <p>Chargement des images...</p>
+                </div>
+                <img id="expModalImage" src="" alt="Image expérience" style="display: none;" onerror="handleImageError(this, 'exp')">
+                <div class="gallery-nav" id="expGalleryNav" style="display: none;">
+                    <button class="prev" onclick="changeImage('exp', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="image-counter" id="expImageCounter"></div>
+                    <button class="next" onclick="changeImage('exp', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="thumbnail-gallery" id="expThumbnails"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('projectModal')">&times;</span>
+            <h2 class="modal-title" id="projModalTitle"></h2>
+            <div class="modal-description" id="projModalDescription"></div>
+            
+            <div class="gallery" id="projGallery">
+                <div class="loading" id="projLoading">
+                    <div class="spinner"></div>
+                    <p>Chargement des images...</p>
+                </div>
+                <img id="projModalImage" src="" alt="Image projet" style="display: none;" onerror="handleImageError(this, 'proj')">
+                <div class="gallery-nav" id="projGalleryNav" style="display: none;">
+                    <button class="prev" onclick="changeImage('proj', -1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="image-counter" id="projImageCounter"></div>
+                    <button class="next" onclick="changeImage('proj', 1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="thumbnail-gallery" id="projThumbnails"></div>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -775,6 +1138,8 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
                 }
             });
         });
@@ -813,6 +1178,524 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+
+        // Data for experiences and projects
+        const experiences = [
+            {
+                title: "Stagiaire PFE - Développement Système de Monitoring",
+                company: "Groupe Stellantis - Site de Kénitra",
+                date: "Février 2025 - Août 2025",
+                description: `
+                    <h4>🎯 Objectif du Projet</h4>
+                    <p>Développement d'un système de monitoring temps réel pour optimiser les performances de l'atelier emboutissage.</p>
+                    
+                    <h4>🔧 Réalisations Techniques</h4>
+                    <ul>
+                        <li><strong>Collecte de données IoT :</strong> Transmission des données de production depuis un automate Siemens S7-1500 via une nano IoT</li>
+                        <li><strong>Tableaux de bord dynamiques :</strong> Visualisation en temps réel des KPI (OEE, arrêts, cadences)</li>
+                        <li><strong>Modules d'exportation :</strong> Intégration d'exportation automatique vers Excel pour l'analyse</li>
+                        <li><strong>Digitalisation KPI ESTR :</strong> Remplacement des fichiers Excel par une application web interactive</li>
+                        <li><strong>Architecture containerisée :</strong> Déploiement avec Docker pour une meilleure scalabilité</li>
+                    </ul>
+                    
+                    <h4>💡 Impact Business</h4>
+                    <p>Amélioration de la visibilité sur les performances production et réduction significative du temps d'analyse des données.</p>
+                `,
+                images: ["assets/image002.png", "assets/image005.png", "assets/image004.png", "assets/image003.png", "assets/estr1.png", "assets/estr2.png", "assets/estr3.png"],
+                technologies: ["Django", "Python", "JavaScript", "React.js", "Docker", "PostgreSQL", "Siemens S7-1500", "IoT"]
+            },
+            {
+                title: "Stagiaire PFA - Application de suivi de production",
+                company: "Groupe Stellantis - Site de Kénitra",
+                date: "Juillet - Août 2024",
+                description: `
+                    <h4>🎯 Objectif du Projet</h4>
+                    <p>Création d'une application web complète pour le suivi en temps réel de la production et des indicateurs RO.</p>
+                    
+                    <h4>🔧 Fonctionnalités Développées</h4>
+                    <ul>
+                        <li><strong>Dashboard temps réel :</strong> Affichage dynamique des métriques de production</li>
+                        <li><strong>Graphiques interactifs :</strong> Visualisation avec ECharts pour l'analyse des tendances</li>
+                        <li><strong>Système d'exportation :</strong> Export automatique des données vers Excel</li>
+                        <li><strong>Interface responsive :</strong> Adaptation à tous les écrans avec Bootstrap</li>
+                        <li><strong>Gestion utilisateurs :</strong> Système d'authentification et de permissions</li>
+                    </ul>
+                    
+                    <h4>📊 Résultats</h4>
+                    <p>Interface utilisée quotidiennement par opérateurs, amélioration de l'efficacité du reporting.</p>
+                `,
+                images: ["assets/login.png", "assets/homead.png", "assets/D1.png", "assets/D2.png", "assets/D3.png", "assets/D4.png", "assets/DU.png", "assets/register.png", "assets/S1.png", "assets/S2.png", "assets/S3.png", "assets/S4.png", "assets/S5.png", "assets/A1.png"],
+                technologies: ["Django", "Python", "JavaScript", "ECharts", "Bootstrap", "MySQL"]
+            },
+            {
+                title: "Stagiaire d'Initiation - Application de gestion de salle de réunion",
+                company: "OCP Jorf Lasfar",
+                date: "Juillet 2023",
+                description: `
+                    <h4>🎯 Objectif du Projet</h4>
+                    <p>Développement d'un système complet de gestion et réservation des salles de réunion pour optimiser l'utilisation des espaces.</p>
+                    
+                    <h4>🔧 Fonctionnalités Implémentées</h4>
+                    <ul>
+                        <li><strong>Système de réservation :</strong> Interface intuitive pour la réservation des salles</li>
+                        <li><strong>Gestion des conflits :</strong> Détection automatique des créneaux occupés</li>
+                        <li><strong>Demande de matériel :</strong> Module pour commander du matériel supplémentaire</li>
+                        <li><strong>Calendrier interactif :</strong> Vue d'ensemble des réservations</li>
+                        <li><strong>Notifications :</strong> Alertes automatiques pour les utilisateurs</li>
+                    </ul>
+                    
+                    <h4>📈 Impact</h4>
+                    <p>Réduction de des conflits de réservation et amélioration significative de l'expérience utilisateur.</p>
+                `,
+                images: ["assets/1.jpg", "assets/2.jpg", "assets/3.jpg", "assets/4.jpg", "assets/5.jpg", "assets/6.jpg", "assets/7.jpg", "assets/8.jpg", "assets/9.jpg"],
+                technologies: ["Java", "MySQL", "Swing", "JDBC"]
+            }
+        ];
+
+        const projects = [
+            {
+                title: "Système IoT de Santé Connectée",
+                description: `
+                    <h4>🎯 Vision du Projet</h4>
+                    <p>Développement d'une solution IoT complète pour la surveillance médicale à distance et la gestion proactive des maladies chroniques.</p>
+                    
+                    <h4>🔧 Architecture Technique</h4>
+                    <ul>
+                        <li><strong>MediGuardian :</strong> Dispositif basé sur Arduino/NodeMCU avec capteurs (DHT11, MQ-6, BMP180, PIR) pour surveiller température, humidité, pression et présence humaine dans les zones de stockage de médicaments.</li>
+                        <li><strong>VitaCareMonitor :</strong> Solution compacte utilisant un ESP32 pour mesurer la fréquence cardiaque et la température corporelle en temps réel, avec un capteur potentiomètre temporaire pour simuler les données vitales.</li>
+                        <li><strong>Transmission des données :</strong> Intégration avec ThingSpeak et Node-RED pour une visualisation en temps réel et un stockage sécurisé des données via MQTT et Wi-Fi.</li>
+                        <li><strong>Interface utilisateur :</strong> Tableaux de bord Node-RED et ThingSpeak pour un suivi graphique intuitif des paramètres environnementaux et vitaux.</li>
+                        <li><strong>Alertes intelligentes :</strong> Notifications GSM automatiques (MediGuardian) et alertes personnalisables (VitaCareMonitor) en cas de dépassement des seuils critiques.</li>
+                    </ul>
+
+                    <h4>💡 Innovation</h4>
+                    <p>MediGuardian garantit des conditions optimales de stockage des médicaments, réduisant les risques de dégradation, tandis que VitaCareMonitor offre un suivi non invasif des signes vitaux, favorisant une prise en charge proactive des patients. Ces solutions visent à réduire les hospitalisations de 50 % et à renforcer la relation patient-médecin grâce à une surveillance continue et à distance.</p>
+                `,
+                technologies: ["Arduino", "NodeRED", "ThingSpeak", "WOKWI", "C++", "JavaScript"]
+            },
+            {
+                title: "Robot Suiveur de Ligne Autonome",
+                description: `
+                    <h4>🎯 Objectif du Projet</h4>
+                    <p>Conception et réalisation d'un robot autonome capable de suivre une ligne tout en évitant les obstacles de manière intelligente.</p>
+                    
+                    <h4>🔧 Composants & Fonctionnalités</h4>
+                    <ul>
+                        <li><strong>Navigation autonome :</strong> Utilisation de capteurs infrarouges pour un suivi précis de la ligne noire sur fond blanc.</li>
+                        <li><strong>Évitement d'obstacles :</strong> Capteur ultrasonique HC-SR04 pour détecter les obstacles et analyser les distances pour un contournement optimal.</li>
+                        <li><strong>Contrôle moteur :</strong> Module L298N pour un contrôle précis de la vitesse et de la direction des moteurs DC à quatre roues.</li>
+                        <li><strong>Intelligence embarquée :</strong> Programmation Arduino pour une prise de décision en temps réel basée sur les données des capteurs.</li>
+                        <li><strong>Simulation et validation :</strong> Conception et tests réalisés via Proteus pour valider le schéma électrique et les performances du robot.</li>
+                    </ul>
+
+                    <h4>📊 Performance</h4>
+                    <p>Le robot atteint une précision de suivi de ligne de 95 % et réagit aux obstacles en moins de 0,2 seconde, assurant une navigation fluide et fiable dans divers environnements.</p>
+                `,
+                images: ["assets/robot.jpeg"],
+                technologies: ["Arduino", "L298", "Proteus8", "Capteurs IR", "Ultrasons"]
+            },
+            {
+                title: "Détection de Formes par IA",
+                description: `
+                    <h4>🎯 Vision du Projet</h4>
+                    <p>Conception d'un système de reconnaissance de formes géométriques basé sur l'intelligence artificielle.</p>
+                    
+                    <h4>🔧 Pipeline d'IA</h4>
+                    <ul>
+                        <li><strong>Préparation des données :</strong> Collecte, annotation et augmentation d'un dataset diversifié via Roboflow pour inclure des formes géométriques variées.</li>
+                        <li><strong>Modèle YOLOv5 :</strong> Entraînement d'un réseau de neurones convolutif (CNN) personnalisé pour la détection et classification des formes et couleurs.</li>
+                        <li><strong>Environnement cloud :</strong> Utilisation de Google Colab pour l'entraînement et les tests, exploitant la puissance de calcul du cloud.</li>
+                        <li><strong>Optimisation du modèle :</strong> Ajustement fin (fine-tuning) pour maximiser la précision et la robustesse du modèle.</li>
+                    </ul>
+
+                    <h4>📈 Résultats</h4>
+                    <p>Précision de détection de 97% sur le dataset de test, avec un temps de traitement moyen de 0.1 seconde par image, démontrant une efficacité élevée.</p>
+                `,
+                images: ["assets/red.png"],
+                technologies: ["YOLO V5", "RoboFlow", "Google Colab", "Python", "OpenCV", "TensorFlow"]
+            },
+            {
+                title: "Automatisation d'Extraction d'Huile d'Olive",
+                description: `
+                    <h4>🎯 Projet d'Automatisation Industrielle</h4>
+                    <p>Conception complète et modernisation d’un système automatisé pour l’extraction d’huile d’olive, intégrant des technologies avancées de contrôle et supervision.</p>
+                    
+                    <h4>🔧 Conception & Programmation</h4>
+                    <ul>
+                        <li><strong>Schémas P&ID :</strong> Représentation détaillée des étapes du processus industriel d’extraction.</li>
+                        <li><strong>Programmation Ladder :</strong> Développement de la logique de contrôle adaptée aux automates Siemens S7.</li>
+                        <li><strong>GRAFCET :</strong> Modélisation séquentielle précise des différentes phases de production.</li>
+                        <li><strong>Capteurs & Actionneurs :</strong> Intégration de capteurs RTD, ultrasons, radars et moteurs à variateurs pour une automatisation fiable.</li>
+                        <li><strong>Sécurité industrielle :</strong> Mise en place des protections, arrêts d’urgence et protocoles de sécurité.</li>
+                    </ul>
+                    
+                    <h4>🏭 Innovation Process</h4>
+                    <p>Automatisation efficace visant à optimiser la production, réduire les pertes, garantir une qualité constante de l’huile d’olive extra vierge, et faciliter la supervision à distance.</p>
+                `,
+                technologies: ["TIA Portal", "P&ID", "HMI", "GRAFCET", "Ladder", "Siemens S7"]
+            },
+            {
+                title: "Prédiction Prix Voitures d'Occasion",
+                description: `
+                    <h4>🎯 Machine Learning pour l'Automobile</h4>
+                    <p>Développement d'un modèle prédictif intelligent pour l'estimation précise des prix de voitures d'occasion.</p>
+                    
+                    <h4>🔧 Pipeline de Data Science</h4>
+                    <ul>
+                        <li><strong>Préparation des données :</strong> Nettoyage des données, gestion des valeurs manquantes et suppression des doublons</li>
+                        <li><strong>Transformation des données :</strong> Encodage des variables catégorielles et normalisation des variables numériques</li>
+                        <li><strong>Exploration des données :</strong> Analyse des distributions et corrélations via histogrammes et matrices de corrélation</li>
+                        <li><strong>Modélisation :</strong> Régression linéaire avec optimisation des performances</li>
+                        <li><strong>Interface utilisateur :</strong> Application Django pour une prédiction interactive des prix</li>
+                    </ul>
+                    
+                    <h4>📊 Performance du Modèle</h4>
+                    <p>Le modèle atteint un R² de 89.5% sur l'ensemble d'entraînement et 80.98% sur l'ensemble de test, avec une erreur absolue moyenne (MAE) de 1.11 et 1.23 respectivement.</p>
+                `,
+                images: ["assets/predict.png"],
+                technologies: ["Python", "Django", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"]
+            },
+            {
+                title: "Application Excel VBA - Gestion de Production",
+                description: `
+                    <h4>🎯 Automatisation de Gestion</h4>
+                    <p>Application complète de gestion de production pour une entreprise de fabrication de chocolat avec interface utilisateur avancée.</p>
+                    
+                    <h4>🔧 Modules Développés</h4>
+                    <ul>
+                        <li><strong>Gestion des commandes :</strong> Suivi complet du cycle de commande</li>
+                        <li><strong>Planification production :</strong> Optimisation des ressources et capacités</li>
+                        <li><strong>Contrôle qualité :</strong> Traçabilité et gestion des non-conformités</li>
+                        <li><strong>Reporting automatique :</strong> Génération de rapports KPI en temps réel</li>
+                        <li><strong>Dashboard exécutif :</strong> Tableaux de bord pour prise de décision</li>
+                    </ul>
+                    
+                    <h4>📈 Résultats Opérationnels</h4>
+                    <p>Réduction de temps de traitement administratif et amélioration de la traçabilité production.</p>
+                `,
+                images: ["assets/VBA1.png"],
+                technologies: ["Excel VBA", "Macros", "UserForms", "SQL", "Charts", "Automation"]
+            }
+        ];
+
+        let currentModalType = '';
+        let currentIndex = 0;
+        let currentImageIndex = 0;
+
+        // Experience Modal Functions
+        function openExperienceModal(index) {
+            currentModalType = 'exp';
+            currentIndex = index;
+            currentImageIndex = 0;
+            
+            const exp = experiences[index];
+            document.getElementById('expModalTitle').innerHTML = exp.title;
+            document.getElementById('expModalDescription').innerHTML = exp.description;
+            
+            loadImages('exp', exp.images);
+            document.getElementById('experienceModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Project Modal Functions
+        function openProjectModal(index) {
+            currentModalType = 'proj';
+            currentIndex = index;
+            currentImageIndex = 0;
+            
+            const proj = projects[index];
+            document.getElementById('projModalTitle').innerHTML = proj.title;
+            document.getElementById('projModalDescription').innerHTML = proj.description;
+            
+            loadImages('proj', proj.images);
+            document.getElementById('projectModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Load images with error handling
+        function loadImages(type, images) {
+            const loading = document.getElementById(`${type}Loading`);
+            const image = document.getElementById(`${type}ModalImage`);
+            const nav = document.getElementById(`${type}GalleryNav`);
+            const thumbnails = document.getElementById(`${type}Thumbnails`);
+            
+            loading.style.display = 'block';
+            image.style.display = 'none';
+            nav.style.display = 'none';
+            thumbnails.innerHTML = '';
+
+            if (images && images.length > 0) {
+                // Load main image
+                const img = new Image();
+                img.onload = function() {
+                    loading.style.display = 'none';
+                    image.src = this.src;
+                    image.style.display = 'block';
+                    if (images.length > 1) {
+                        nav.style.display = 'flex';
+                        updateImageCounter(type, images.length);
+                        createThumbnails(type, images);
+                    }
+                };
+                img.onerror = function() {
+                    handleImageError(image, type);
+                };
+                img.src = images[0];
+            } else {
+                handleImageError(image, type);
+            }
+        }
+
+        // Handle image loading errors
+        function handleImageError(imgElement, type) {
+            const loading = document.getElementById(`${type}Loading`);
+            const nav = document.getElementById(`${type}GalleryNav`);
+            
+            loading.style.display = 'none';
+            nav.style.display = 'none';
+            
+            imgElement.style.display = 'none';
+        }
+
+        // Create thumbnail gallery
+        function createThumbnails(type, images) {
+            const thumbnails = document.getElementById(`${type}Thumbnails`);
+            thumbnails.innerHTML = '';
+            
+            images.forEach((src, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = src;
+                thumb.className = 'thumbnail' + (index === 0 ? ' active' : '');
+                thumb.onclick = () => goToImage(type, index);
+                thumb.onerror = function() {
+                    this.style.display = 'none';
+                };
+                thumbnails.appendChild(thumb);
+            });
+        }
+
+        // Navigate images
+        function changeImage(type, direction) {
+            const data = type === 'exp' ? experiences[currentIndex] : projects[currentIndex];
+            const images = data.images;
+            
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+            
+            goToImage(type, currentImageIndex);
+        }
+
+        function goToImage(type, index) {
+            currentImageIndex = index;
+            const data = type === 'exp' ? experiences[currentIndex] : projects[currentIndex];
+            const images = data.images;
+            
+            const image = document.getElementById(`${type}ModalImage`);
+            const loading = document.getElementById(`${type}Loading`);
+            
+            loading.style.display = 'block';
+            image.style.display = 'none';
+            
+            const img = new Image();
+            img.onload = function() {
+                loading.style.display = 'none';
+                image.src = this.src;
+                image.style.display = 'block';
+                updateImageCounter(type, images.length);
+                updateThumbnails(type);
+            };
+            img.onerror = function() {
+                loading.style.display = 'none';
+                handleImageError(image, type);
+            };
+            img.src = images[index];
+        }
+
+        // Update image counter
+        function updateImageCounter(type, total) {
+            const counter = document.getElementById(`${type}ImageCounter`);
+            counter.textContent = `${currentImageIndex + 1} / ${total}`;
+        }
+
+        // Update thumbnail active state
+        function updateThumbnails(type) {
+            const thumbnails = document.querySelectorAll(`#${type}Thumbnails .thumbnail`);
+            thumbnails.forEach((thumb, index) => {
+                thumb.classList.toggle('active', index === currentImageIndex);
+            });
+        }
+
+        // Close modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const expModal = document.getElementById('experienceModal');
+            const projModal = document.getElementById('projectModal');
+            
+            if (event.target === expModal) {
+                closeModal('experienceModal');
+            }
+            if (event.target === projModal) {
+                closeModal('projectModal');
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            const expModal = document.getElementById('experienceModal');
+            const projModal = document.getElementById('projectModal');
+            
+            if (expModal.style.display === 'block' || projModal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeModal('experienceModal');
+                    closeModal('projectModal');
+                } else if (e.key === 'ArrowLeft') {
+                    changeImage(currentModalType, -1);
+                } else if (e.key === 'ArrowRight') {
+                    changeImage(currentModalType, 1);
+                }
+            }
+        });
+
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            // Add staggered animation to timeline items
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Add staggered animation to project cards
+            const projectCards = document.querySelectorAll('.project-card');
+            projectCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add staggered animation to skill categories
+            const skillCategories = document.querySelectorAll('.skill-category');
+            skillCategories.forEach((category, index) => {
+                category.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add hover effects to tech tags
+        document.addEventListener('DOMContentLoaded', function() {
+            const techTags = document.querySelectorAll('.tech-tag');
+            techTags.forEach(tag => {
+                tag.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.1)';
+                    this.style.boxShadow = '0 5px 15px rgba(52, 152, 219, 0.3)';
+                });
+                
+                tag.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                    this.style.boxShadow = 'none';
+                });
+            });
+        });
+
+        // Lazy loading for better performance
+        function lazyLoadImages() {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            images.forEach(img => imageObserver.observe(img));
+        }
+
+        // Initialize lazy loading
+        document.addEventListener('DOMContentLoaded', lazyLoadImages);
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Add scroll progress indicator
+        function updateScrollProgress() {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            
+            // Create progress bar if it doesn't exist
+            let progressBar = document.getElementById('scrollProgress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'scrollProgress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: ${scrollProgress}%;
+                    height: 3px;
+                    background: var(--accent-color);
+                    z-index: 1001;
+                    transition: width 0.3s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                progressBar.style.width = `${scrollProgress}%`;
+            }
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Add particle effect to hero section
+        function createParticles() {
+            const hero = document.querySelector('.hero');
+            const particlesCount = 50;
+            
+            for (let i = 0; i < particlesCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.cssText = `
+                    position: absolute;
+                    width: 2px;
+                    height: 2px;
+                    background: rgba(255,255,255,0.5);
+                    border-radius: 50%;
+                    animation: float ${Math.random() * 3 + 2}s infinite linear;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                `;
+                hero.appendChild(particle);
+            }
+        }
+
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+                50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Initialize particles
+        document.addEventListener('DOMContentLoaded', createParticles);
     </script>
 </body>
 </html>
